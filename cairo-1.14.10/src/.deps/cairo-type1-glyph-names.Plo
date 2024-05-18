@@ -1,0 +1,190 @@
+cairo-type1-glyph-names.lo: cairo-type1-glyph-names.c cairoint.h \
+ ../config.h /usr/ppc-amigaos/SDK/newlib/include/assert.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/newlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/config.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/features.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdlib.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/reent.h \
+ /usr/ppc-amigaos/SDK/newlib/include/_ansi.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/lock.h \
+ /usr/ppc-amigaos/SDK/newlib/include/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/resource.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/time.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/_types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/types.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/select.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h \
+ /usr/ppc-amigaos/SDK/newlib/include/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/signal.h \
+ /usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h \
+ /usr/ppc-amigaos/SDK/newlib/include/alloca.h \
+ /usr/ppc-amigaos/SDK/newlib/include/string.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/string.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h \
+ /usr/ppc-amigaos/SDK/newlib/include/math.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/cdefs.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h \
+ /usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/limits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdio.h \
+ /usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h cairo.h cairo-version.h \
+ cairo-features.h cairo-deprecated.h /usr/include/pixman-1/pixman.h \
+ /usr/include/pixman-1/pixman-version.h \
+ /usr/ppc-amigaos/SDK/newlib/include/stdint.h cairo-compiler-private.h \
+ cairo-error-private.h cairo-types-private.h cairo-fixed-type-private.h \
+ cairo-wideint-type-private.h cairo-list-private.h \
+ cairo-reference-count-private.h cairo-atomic-private.h \
+ cairo-cache-private.h cairo-spans-private.h cairo-surface-private.h \
+ cairo-clip-private.h cairo-boxes-private.h cairo-path-fixed-private.h \
+ cairo-surface-backend-private.h cairo-scaled-font-private.h \
+ cairo-mutex-type-private.h cairo-mutex-impl-private.h \
+ /usr/ppc-amigaos/SDK/include/include_h/proto/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/utility.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/types.h \
+ /usr/ppc-amigaos/SDK/include/include_h/amiga_compiler.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/libraries.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/nodes.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/lists.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/tagitem.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/data_structures.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/date.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/hooks.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/message_digest.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/name.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/pack.h \
+ /usr/ppc-amigaos/SDK/include/include_h/utility/random.h \
+ /usr/ppc-amigaos/SDK/include/include_h/interfaces/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/exec.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/alerts.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/errors.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/initializers.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/memory.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/tasks.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/exectags.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/ports.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/resident.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/interrupts.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/semaphores.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/io.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/devices.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/execbase.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/interfaces.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/avl.h \
+ /usr/ppc-amigaos/SDK/include/include_h/exec/debug.h \
+ cairo-mutex-private.h cairo-mutex-list-private.h cairo-fixed-private.h \
+ cairo-wideint-private.h cairo-malloc-private.h cairo-hash-private.h \
+ /usr/include/valgrind/memcheck.h /usr/include/valgrind/valgrind.h \
+ cairo-type1-private.h cairo-scaled-font-subsets-private.h
+cairoint.h:
+../config.h:
+/usr/ppc-amigaos/SDK/newlib/include/assert.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/newlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/config.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/ieeefp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/features.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdlib.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stddef.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/reent.h:
+/usr/ppc-amigaos/SDK/newlib/include/_ansi.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/lock.h:
+/usr/ppc-amigaos/SDK/newlib/include/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/setjmp.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/resource.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/time.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/_types.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/types.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/select.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/timeb.h:
+/usr/ppc-amigaos/SDK/newlib/include/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/signal.h:
+/usr/ppc-amigaos/SDK/newlib/include/machine/stdlib.h:
+/usr/ppc-amigaos/SDK/newlib/include/alloca.h:
+/usr/ppc-amigaos/SDK/newlib/include/string.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/string.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include/stdarg.h:
+/usr/ppc-amigaos/SDK/newlib/include/math.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/cdefs.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/limits.h:
+/usr/lib/gcc/ppc-amigaos/11.3.0/include-fixed/syslimits.h:
+/usr/ppc-amigaos/SDK/newlib/include/limits.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/syslimits.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdio.h:
+/usr/ppc-amigaos/SDK/newlib/include/sys/stdio.h:
+cairo.h:
+cairo-version.h:
+cairo-features.h:
+cairo-deprecated.h:
+/usr/include/pixman-1/pixman.h:
+/usr/include/pixman-1/pixman-version.h:
+/usr/ppc-amigaos/SDK/newlib/include/stdint.h:
+cairo-compiler-private.h:
+cairo-error-private.h:
+cairo-types-private.h:
+cairo-fixed-type-private.h:
+cairo-wideint-type-private.h:
+cairo-list-private.h:
+cairo-reference-count-private.h:
+cairo-atomic-private.h:
+cairo-cache-private.h:
+cairo-spans-private.h:
+cairo-surface-private.h:
+cairo-clip-private.h:
+cairo-boxes-private.h:
+cairo-path-fixed-private.h:
+cairo-surface-backend-private.h:
+cairo-scaled-font-private.h:
+cairo-mutex-type-private.h:
+cairo-mutex-impl-private.h:
+/usr/ppc-amigaos/SDK/include/include_h/proto/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/utility.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/types.h:
+/usr/ppc-amigaos/SDK/include/include_h/amiga_compiler.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/libraries.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/nodes.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/lists.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/tagitem.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/data_structures.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/date.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/hooks.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/message_digest.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/name.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/pack.h:
+/usr/ppc-amigaos/SDK/include/include_h/utility/random.h:
+/usr/ppc-amigaos/SDK/include/include_h/interfaces/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/exec.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/alerts.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/errors.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/initializers.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/memory.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/tasks.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/exectags.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/ports.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/resident.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/interrupts.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/semaphores.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/io.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/devices.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/execbase.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/interfaces.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/avl.h:
+/usr/ppc-amigaos/SDK/include/include_h/exec/debug.h:
+cairo-mutex-private.h:
+cairo-mutex-list-private.h:
+cairo-fixed-private.h:
+cairo-wideint-private.h:
+cairo-malloc-private.h:
+cairo-hash-private.h:
+/usr/include/valgrind/memcheck.h:
+/usr/include/valgrind/valgrind.h:
+cairo-type1-private.h:
+cairo-scaled-font-subsets-private.h:
