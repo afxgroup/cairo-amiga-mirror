@@ -36,7 +36,7 @@
 
 #include <stdio.h>
 
-#if HAVE_UNISTD_H && HAVE_SYS_IOCTL_H
+#if HAVE_UNISTD_H && HAVE_SYS_IOCTL_H && !defined(__amigaos4__)
 #define USE_TERMINAL_SIZE 1
 #else
 #define USE_TERMINAL_SIZE 0

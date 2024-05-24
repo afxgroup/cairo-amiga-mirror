@@ -1,0 +1,23 @@
+[binaries]
+c = 'ppc-amigaos-gcc'
+cpp = 'ppc-amigaos-g++'
+ar = 'ppc-amigaos-ar'
+strip = 'ppc-amigaos-strip'
+pkg-config = 'pkg-config'
+
+[built-in options]
+c_args = ['-mcrt=newlib', '-I/usr/ppc-amigaos/SDK/local/common/include/pixman-1']
+cpp_args = ['-mcrt=newlib', '-I/usr/ppc-amigaos/SDK/local/common/include/pixman-1']
+c_link_args = ['-mcrt=newlib', '-lauto', '-athread=native']
+cpp_link_args = ['-mcrt=newlib',  '-lauto', '-athread=native']
+b_lundef = false
+
+[host_machine]
+system = 'amigaos'
+cpu_family = 'ppc'
+cpu = 'ppc'
+endian = 'big'
+
+[properties]
+pkg_config_libdir = '/usr/ppc-amigaos/SDK/local/newlib/lib/pkgconfig'
+pkg_config_path = '/usr/ppc-amigaos/SDK/local/newlib/lib/pkgconfig'
