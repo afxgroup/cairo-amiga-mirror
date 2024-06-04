@@ -162,7 +162,6 @@ check_funcs = [
 
 check_thread_flags = [
   [['-D_REENTRANT'], ['-lpthread']],
-  [['-pthread'], []],
   [['-D_REENTRANT'], [], {'real': false}],
 ]
 

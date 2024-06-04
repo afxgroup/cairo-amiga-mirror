@@ -1,0 +1,1903 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="cairo" basename="CairoBase" basetype="CairoLibrary" openname="cairo.library">
+
+    <include>cairo.h</include>
+
+    <interface name="main" version="1.0" flags="protected" struct="CairoIFace" global="ICairo" prefix="_impl_"
+               asmprefix="ICairo">
+
+        <method name="Obtain" result="uint32"/>
+        <method name="Release" result="uint32"/>
+        <method name="Expunge" result="void" status="unimplemented"/>
+        <method name="Clone" result="struct Interface *" status="unimplemented"/>
+
+        <method name="cairo_tee_surface_create" result="cairo_surface_t *">
+            <arg name="primary" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_tee_surface_add" result="void">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="target" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_tee_surface_remove" result="void">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="target" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_tee_surface_index" result="cairo_surface_t *">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="index" type="unsigned int"/>
+        </method>
+        <method name="cairo_ft_font_face_create_for_ft_face" result="cairo_font_face_t *">
+            <arg name="face" type="FT_Face"/>
+            <arg name="load_flags" type="int"/>
+        </method>
+        <method name="cairo_ft_font_face_set_synthesize" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="synth_flags" type="unsigned int"/>
+        </method>
+        <method name="cairo_ft_font_face_unset_synthesize" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="synth_flags" type="unsigned int"/>
+        </method>
+        <method name="cairo_ft_font_face_get_synthesize" result="unsigned int">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_ft_scaled_font_lock_face" result="FT_Face">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_ft_scaled_font_unlock_face" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_ft_font_face_create_for_pattern" result="cairo_font_face_t *">
+            <arg name="pattern" type="FcPattern *"/>
+        </method>
+        <method name="cairo_ft_font_options_substitute" result="void">
+            <arg name="options" type="const cairo_font_options_t *"/>
+            <arg name="pattern" type="FcPattern *"/>
+        </method>
+        <method name="cairo_xlib_surface_create" result="cairo_surface_t *">
+            <arg name="dpy" type="Display *"/>
+            <arg name="drawable" type="Drawable"/>
+            <arg name="visual" type="Visual *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xlib_surface_create_for_bitmap" result="cairo_surface_t *">
+            <arg name="dpy" type="Display *"/>
+            <arg name="bitmap" type="Pixmap"/>
+            <arg name="screen" type="Screen *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xlib_surface_set_size" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xlib_surface_set_drawable" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="drawable" type="Drawable"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xlib_surface_get_display" result="Display *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_drawable" result="Drawable">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_screen" result="Screen *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_visual" result="Visual *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_depth" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_width" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_surface_get_height" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_xlib_device_debug_cap_xrender_version" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="major_version" type="int"/>
+            <arg name="minor_version" type="int"/>
+        </method>
+        <method name="cairo_xlib_device_debug_set_precision" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="precision" type="int"/>
+        </method>
+        <method name="cairo_xlib_device_debug_get_precision" result="int">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_script_create" result="cairo_device_t *">
+            <arg name="filename" type="const char *"/>
+        </method>
+        <method name="cairo_script_create_for_stream" result="cairo_device_t *">
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_script_write_comment" result="void">
+            <arg name="script" type="cairo_device_t *"/>
+            <arg name="comment" type="const char *"/>
+            <arg name="len" type="int"/>
+        </method>
+        <method name="cairo_script_set_mode" result="void">
+            <arg name="script" type="cairo_device_t *"/>
+            <arg name="mode" type="cairo_script_mode_t"/>
+        </method>
+        <method name="cairo_script_get_mode" result="cairo_script_mode_t">
+            <arg name="script" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_script_surface_create" result="cairo_surface_t *">
+            <arg name="script" type="cairo_device_t *"/>
+            <arg name="content" type="cairo_content_t"/>
+            <arg name="width" type="double"/>
+            <arg name="height" type="double"/>
+        </method>
+        <method name="cairo_script_surface_create_for_target" result="cairo_surface_t *">
+            <arg name="script" type="cairo_device_t *"/>
+            <arg name="target" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_script_from_recording_surface" result="cairo_status_t">
+            <arg name="script" type="cairo_device_t *"/>
+            <arg name="recording_surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_amigaos_surface_create" result="cairo_surface_t *">
+            <arg name="bitmap" type="struct BitMap *"/>
+        </method>
+        <method name="cairo_amigaos_surface_create_from_rastport" result="cairo_surface_t *">
+            <arg name="rastport" type="struct RastPort *"/>
+            <arg name="xoff" type="int"/>
+            <arg name="yoff" type="int"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_amigaos_font_face_create" result="cairo_font_face_t *">
+            <arg name="filename" type="const char *"/>
+        </method>
+        <method name="cairo_svg_surface_create" result="cairo_surface_t *">
+            <arg name="filename" type="const char *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_svg_surface_create_for_stream" result="cairo_surface_t *">
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_svg_surface_restrict_to_version" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="version" type="cairo_svg_version_t"/>
+        </method>
+        <method name="cairo_svg_get_versions" result="void">
+            <arg name="*versions" type="cairo_svg_version_t const *"/>
+            <arg name="num_versions" type="int *"/>
+        </method>
+        <method name="cairo_svg_version_to_string" result="const char *">
+            <arg name="version" type="cairo_svg_version_t"/>
+        </method>
+        <method name="cairo_svg_surface_set_document_unit" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="unit" type="cairo_svg_unit_t"/>
+        </method>
+        <method name="cairo_svg_surface_get_document_unit" result="cairo_svg_unit_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_win32_surface_create" result="cairo_surface_t *">
+            <arg name="hdc" type="HDC"/>
+        </method>
+        <method name="cairo_win32_surface_create_with_format" result="cairo_surface_t *">
+            <arg name="hdc" type="HDC"/>
+            <arg name="format" type="cairo_format_t"/>
+        </method>
+        <method name="cairo_win32_printing_surface_create" result="cairo_surface_t *">
+            <arg name="hdc" type="HDC"/>
+        </method>
+        <method name="cairo_win32_surface_create_with_ddb" result="cairo_surface_t *">
+            <arg name="hdc" type="HDC"/>
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_win32_surface_create_with_dib" result="cairo_surface_t *">
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_win32_surface_get_dc" result="HDC">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_win32_surface_get_image" result="cairo_surface_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_win32_font_face_create_for_logfontw" result="cairo_font_face_t *">
+            <arg name="logfont" type="LOGFONTW *"/>
+        </method>
+        <method name="cairo_win32_font_face_create_for_hfont" result="cairo_font_face_t *">
+            <arg name="font" type="HFONT"/>
+        </method>
+        <method name="cairo_win32_font_face_create_for_logfontw_hfont" result="cairo_font_face_t *">
+            <arg name="logfont" type="LOGFONTW *"/>
+            <arg name="font" type="HFONT"/>
+        </method>
+        <method name="cairo_win32_scaled_font_select_font" result="cairo_status_t">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="hdc" type="HDC"/>
+        </method>
+        <method name="cairo_win32_scaled_font_done_font" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_win32_scaled_font_get_metrics_factor" result="double">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_win32_scaled_font_get_logical_to_device" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="logical_to_device" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_win32_scaled_font_get_device_to_logical" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="device_to_logical" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_pdf_surface_create" result="cairo_surface_t *">
+            <arg name="filename" type="const char *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_pdf_surface_create_for_stream" result="cairo_surface_t *">
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_pdf_surface_restrict_to_version" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="version" type="cairo_pdf_version_t"/>
+        </method>
+        <method name="cairo_pdf_get_versions" result="void">
+            <arg name="*versions" type="cairo_pdf_version_t const *"/>
+            <arg name="num_versions" type="int *"/>
+        </method>
+        <method name="cairo_pdf_version_to_string" result="const char *">
+            <arg name="version" type="cairo_pdf_version_t"/>
+        </method>
+        <method name="cairo_pdf_surface_set_size" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_pdf_surface_add_outline" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="parent_id" type="int"/>
+            <arg name="utf8" type="const char *"/>
+            <arg name="link_attribs" type="const char *"/>
+            <arg name="flags" type="cairo_pdf_outline_flags_t"/>
+        </method>
+        <method name="cairo_pdf_surface_set_metadata" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="metadata" type="cairo_pdf_metadata_t"/>
+            <arg name="utf8" type="const char *"/>
+        </method>
+        <method name="cairo_pdf_surface_set_custom_metadata" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="name" type="const char *"/>
+            <arg name="value" type="const char *"/>
+        </method>
+        <method name="cairo_pdf_surface_set_page_label" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="utf8" type="const char *"/>
+        </method>
+        <method name="cairo_pdf_surface_set_thumbnail_size" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_dwrite_font_face_create_for_dwrite_fontface" result="cairo_font_face_t *">
+            <arg name="dwrite_font_face" type="IDWriteFontFace *"/>
+        </method>
+        <method name="cairo_dwrite_font_face_get_rendering_params" result="IDWriteRenderingParams *">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_dwrite_font_face_set_rendering_params" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="params" type="IDWriteRenderingParams *"/>
+        </method>
+        <method name="cairo_dwrite_font_face_get_measuring_mode" result="DWRITE_MEASURING_MODE">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_dwrite_font_face_set_measuring_mode" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="mode" type="DWRITE_MEASURING_MODE"/>
+        </method>
+        <method name="cairo_xlib_surface_create_with_xrender_format" result="cairo_surface_t *">
+            <arg name="dpy" type="Display *"/>
+            <arg name="drawable" type="Drawable"/>
+            <arg name="screen" type="Screen *"/>
+            <arg name="format" type="XRenderPictFormat *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xlib_surface_get_xrender_format" result="XRenderPictFormat *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_version_string" result="const char*"/>
+        <method name="cairo_pattern_set_dither" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="dither" type="cairo_dither_t"/>
+        </method>
+        <method name="cairo_pattern_get_dither" result="cairo_dither_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_create" result="cairo_t *">
+            <arg name="target" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_reference" result="cairo_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_destroy" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_reference_count" result="unsigned int">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_user_data" result="void *">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_set_user_data" result="cairo_status_t">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_save" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_restore" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_push_group" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_push_group_with_content" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="content" type="cairo_content_t"/>
+        </method>
+        <method name="cairo_pop_group" result="cairo_pattern_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_pop_group_to_source" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_set_operator" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="op" type="cairo_operator_t"/>
+        </method>
+        <method name="cairo_set_source" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="source" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_set_source_rgb" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+        </method>
+        <method name="cairo_set_source_rgba" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_set_source_surface" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_set_tolerance" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="tolerance" type="double"/>
+        </method>
+        <method name="cairo_set_antialias" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="antialias" type="cairo_antialias_t"/>
+        </method>
+        <method name="cairo_set_fill_rule" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="fill_rule" type="cairo_fill_rule_t"/>
+        </method>
+        <method name="cairo_set_line_width" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="width" type="double"/>
+        </method>
+        <method name="cairo_set_hairline" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="set_hairline" type="cairo_bool_t"/>
+        </method>
+        <method name="cairo_set_line_cap" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="line_cap" type="cairo_line_cap_t"/>
+        </method>
+        <method name="cairo_set_line_join" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="line_join" type="cairo_line_join_t"/>
+        </method>
+        <method name="cairo_set_dash" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dashes" type="const double *"/>
+            <arg name="num_dashes" type="int"/>
+            <arg name="offset" type="double"/>
+        </method>
+        <method name="cairo_set_miter_limit" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="limit" type="double"/>
+        </method>
+        <method name="cairo_translate" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="tx" type="double"/>
+            <arg name="ty" type="double"/>
+        </method>
+        <method name="cairo_scale" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="sx" type="double"/>
+            <arg name="sy" type="double"/>
+        </method>
+        <method name="cairo_rotate" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="angle" type="double"/>
+        </method>
+        <method name="cairo_transform" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_set_matrix" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_identity_matrix" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_user_to_device" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double *"/>
+            <arg name="y" type="double *"/>
+        </method>
+        <method name="cairo_user_to_device_distance" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dx" type="double *"/>
+            <arg name="dy" type="double *"/>
+        </method>
+        <method name="cairo_device_to_user" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double *"/>
+            <arg name="y" type="double *"/>
+        </method>
+        <method name="cairo_device_to_user_distance" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dx" type="double *"/>
+            <arg name="dy" type="double *"/>
+        </method>
+        <method name="cairo_new_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_move_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_new_sub_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_line_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_curve_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double"/>
+            <arg name="y1" type="double"/>
+            <arg name="x2" type="double"/>
+            <arg name="y2" type="double"/>
+            <arg name="x3" type="double"/>
+            <arg name="y3" type="double"/>
+        </method>
+        <method name="cairo_arc" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="xc" type="double"/>
+            <arg name="yc" type="double"/>
+            <arg name="radius" type="double"/>
+            <arg name="angle1" type="double"/>
+            <arg name="angle2" type="double"/>
+        </method>
+        <method name="cairo_arc_negative" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="xc" type="double"/>
+            <arg name="yc" type="double"/>
+            <arg name="radius" type="double"/>
+            <arg name="angle1" type="double"/>
+            <arg name="angle2" type="double"/>
+        </method>
+        <method name="cairo_arc_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double"/>
+            <arg name="y1" type="double"/>
+            <arg name="x2" type="double"/>
+            <arg name="y2" type="double"/>
+            <arg name="radius" type="double"/>
+        </method>
+        <method name="cairo_rel_move_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dx" type="double"/>
+            <arg name="dy" type="double"/>
+        </method>
+        <method name="cairo_rel_line_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dx" type="double"/>
+            <arg name="dy" type="double"/>
+        </method>
+        <method name="cairo_rel_curve_to" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dx1" type="double"/>
+            <arg name="dy1" type="double"/>
+            <arg name="dx2" type="double"/>
+            <arg name="dy2" type="double"/>
+            <arg name="dx3" type="double"/>
+            <arg name="dy3" type="double"/>
+        </method>
+        <method name="cairo_rectangle" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+            <arg name="width" type="double"/>
+            <arg name="height" type="double"/>
+        </method>
+        <method name="cairo_stroke_to_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_close_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_path_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+            <arg name="x2" type="double *"/>
+            <arg name="y2" type="double *"/>
+        </method>
+        <method name="cairo_paint" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_paint_with_alpha" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_mask" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_mask_surface" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="surface_x" type="double"/>
+            <arg name="surface_y" type="double"/>
+        </method>
+        <method name="cairo_stroke" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_stroke_preserve" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_fill" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_fill_preserve" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_copy_page" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_show_page" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_in_stroke" result="cairo_bool_t">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_in_fill" result="cairo_bool_t">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_in_clip" result="cairo_bool_t">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_stroke_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+            <arg name="x2" type="double *"/>
+            <arg name="y2" type="double *"/>
+        </method>
+        <method name="cairo_fill_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+            <arg name="x2" type="double *"/>
+            <arg name="y2" type="double *"/>
+        </method>
+        <method name="cairo_reset_clip" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_clip" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_clip_preserve" result="void">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_clip_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+            <arg name="x2" type="double *"/>
+            <arg name="y2" type="double *"/>
+        </method>
+        <method name="cairo_copy_clip_rectangle_list" result="cairo_rectangle_list_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_rectangle_list_destroy" result="void">
+            <arg name="rectangle_list" type="cairo_rectangle_list_t *"/>
+        </method>
+        <method name="cairo_tag_begin" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="tag_name" type="const char *"/>
+            <arg name="attributes" type="const char *"/>
+        </method>
+        <method name="cairo_tag_end" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="tag_name" type="const char *"/>
+        </method>
+        <method name="cairo_glyph_allocate" result="cairo_glyph_t *">
+            <arg name="num_glyphs" type="int"/>
+        </method>
+        <method name="cairo_glyph_free" result="void">
+            <arg name="glyphs" type="cairo_glyph_t *"/>
+        </method>
+        <method name="cairo_text_cluster_allocate" result="cairo_text_cluster_t *">
+            <arg name="num_clusters" type="int"/>
+        </method>
+        <method name="cairo_text_cluster_free" result="void">
+            <arg name="clusters" type="cairo_text_cluster_t *"/>
+        </method>
+        <method name="cairo_font_options_create" result="cairo_font_options_t *"/>
+        <method name="cairo_font_options_copy" result="cairo_font_options_t *">
+            <arg name="original" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_destroy" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_status" result="cairo_status_t">
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_merge" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="other" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_equal" result="cairo_bool_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+            <arg name="other" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_hash" result="unsigned long">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_antialias" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="antialias" type="cairo_antialias_t"/>
+        </method>
+        <method name="cairo_font_options_get_antialias" result="cairo_antialias_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_subpixel_order" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="subpixel_order" type="cairo_subpixel_order_t"/>
+        </method>
+        <method name="cairo_font_options_get_subpixel_order" result="cairo_subpixel_order_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_hint_style" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="hint_style" type="cairo_hint_style_t"/>
+        </method>
+        <method name="cairo_font_options_get_hint_style" result="cairo_hint_style_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_hint_metrics" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="hint_metrics" type="cairo_hint_metrics_t"/>
+        </method>
+        <method name="cairo_font_options_get_hint_metrics" result="cairo_hint_metrics_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_get_variations" result="const char *">
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_variations" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="variations" type="const char *"/>
+        </method>
+        <method name="cairo_font_options_set_color_mode" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="color_mode" type="cairo_color_mode_t"/>
+        </method>
+        <method name="cairo_font_options_get_color_mode" result="cairo_color_mode_t">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_get_color_palette" result="unsigned int">
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_font_options_set_color_palette" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="palette_index" type="unsigned int"/>
+        </method>
+        <method name="cairo_font_options_set_custom_palette_color" result="void">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="index" type="unsigned int"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_font_options_get_custom_palette_color" result="cairo_status_t">
+            <arg name="options" type="cairo_font_options_t *"/>
+            <arg name="index" type="unsigned int"/>
+            <arg name="red" type="double *"/>
+            <arg name="green" type="double *"/>
+            <arg name="blue" type="double *"/>
+            <arg name="alpha" type="double *"/>
+        </method>
+        <method name="cairo_select_font_face" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="family" type="const char *"/>
+            <arg name="slant" type="cairo_font_slant_t"/>
+            <arg name="weight" type="cairo_font_weight_t"/>
+        </method>
+        <method name="cairo_set_font_size" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="size" type="double"/>
+        </method>
+        <method name="cairo_set_font_matrix" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_get_font_matrix" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_set_font_options" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_get_font_options" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_set_font_face" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_get_font_face" result="cairo_font_face_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_set_scaled_font" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="scaled_font" type="const cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_get_scaled_font" result="cairo_scaled_font_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_show_text" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="utf8" type="const char *"/>
+        </method>
+        <method name="cairo_show_glyphs" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="glyphs" type="const cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int"/>
+        </method>
+        <method name="cairo_show_text_glyphs" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="utf8" type="const char *"/>
+            <arg name="utf8_len" type="int"/>
+            <arg name="glyphs" type="const cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int"/>
+            <arg name="clusters" type="const cairo_text_cluster_t *"/>
+            <arg name="num_clusters" type="int"/>
+            <arg name="cluster_flags" type="cairo_text_cluster_flags_t"/>
+        </method>
+        <method name="" result="void cairo_text_path">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="utf8" type="const char *"/>
+        </method>
+        <method name="cairo_glyph_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="glyphs" type="const cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int"/>
+        </method>
+        <method name="cairo_text_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="utf8" type="const char *"/>
+            <arg name="extents" type="cairo_text_extents_t *"/>
+        </method>
+        <method name="cairo_glyph_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="glyphs" type="const cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int"/>
+            <arg name="extents" type="cairo_text_extents_t *"/>
+        </method>
+        <method name="cairo_font_extents" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="extents" type="cairo_font_extents_t *"/>
+        </method>
+        <method name="cairo_font_face_reference" result="cairo_font_face_t *">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_font_face_destroy" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_font_face_get_reference_count" result="unsigned int">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_font_face_status" result="cairo_status_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_font_face_get_type" result="cairo_font_type_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_font_face_get_user_data" result="void *">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_font_face_set_user_data" result="cairo_status_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_scaled_font_create" result="cairo_scaled_font_t *">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="font_matrix" type="const cairo_matrix_t *"/>
+            <arg name="ctm" type="const cairo_matrix_t *"/>
+            <arg name="options" type="const cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_scaled_font_reference" result="cairo_scaled_font_t *">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_destroy" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_reference_count" result="unsigned int">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_status" result="cairo_status_t">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_type" result="cairo_font_type_t">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_user_data" result="void *">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_scaled_font_set_user_data" result="cairo_status_t">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_scaled_font_extents" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="extents" type="cairo_font_extents_t *"/>
+        </method>
+        <method name="cairo_scaled_font_text_extents" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="utf8" type="const char *"/>
+            <arg name="extents" type="cairo_text_extents_t *"/>
+        </method>
+        <method name="cairo_scaled_font_glyph_extents" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="glyphs" type="const cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int"/>
+            <arg name="extents" type="cairo_text_extents_t *"/>
+        </method>
+        <method name="cairo_scaled_font_text_to_glyphs" result="cairo_status_t">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+            <arg name="utf8" type="const char *"/>
+            <arg name="utf8_len" type="int"/>
+            <arg name="*glyphs" type="cairo_glyph_t *"/>
+            <arg name="num_glyphs" type="int *"/>
+            <arg name="*clusters" type="cairo_text_cluster_t *"/>
+            <arg name="num_clusters" type="int *"/>
+            <arg name="cluster_flags" type="cairo_text_cluster_flags_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_font_face" result="cairo_font_face_t *">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_font_matrix" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="font_matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_ctm" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="ctm" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_scale_matrix" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="scale_matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_scaled_font_get_font_options" result="void">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_toy_font_face_create" result="cairo_font_face_t *">
+            <arg name="family" type="const char *"/>
+            <arg name="slant" type="cairo_font_slant_t"/>
+            <arg name="weight" type="cairo_font_weight_t"/>
+        </method>
+        <method name="cairo_toy_font_face_get_family" result="const char *">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_toy_font_face_get_slant" result="cairo_font_slant_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_toy_font_face_get_weight" result="cairo_font_weight_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_font_face_create" result="cairo_font_face_t *"/>
+        <method name="cairo_user_font_face_set_init_func" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="init_func" type="cairo_user_scaled_font_init_func_t"/>
+        </method>
+        <method name="cairo_user_font_face_set_render_glyph_func" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="render_glyph_func" type="cairo_user_scaled_font_render_glyph_func_t"/>
+        </method>
+        <method name="cairo_user_font_face_set_render_color_glyph_func" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="render_glyph_func" type="cairo_user_scaled_font_render_glyph_func_t"/>
+        </method>
+        <method name="cairo_user_font_face_set_text_to_glyphs_func" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="text_to_glyphs_func" type="cairo_user_scaled_font_text_to_glyphs_func_t"/>
+        </method>
+        <method name="cairo_user_font_face_set_unicode_to_glyph_func" result="void">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+            <arg name="unicode_to_glyph_func" type="cairo_user_scaled_font_unicode_to_glyph_func_t"/>
+        </method>
+        <method name="cairo_user_font_face_get_init_func" result="cairo_user_scaled_font_init_func_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_font_face_get_render_glyph_func" result="cairo_user_scaled_font_render_glyph_func_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_font_face_get_render_color_glyph_func"
+                result="cairo_user_scaled_font_render_glyph_func_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_font_face_get_text_to_glyphs_func"
+                result="cairo_user_scaled_font_text_to_glyphs_func_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_font_face_get_unicode_to_glyph_func"
+                result="cairo_user_scaled_font_unicode_to_glyph_func_t">
+            <arg name="font_face" type="cairo_font_face_t *"/>
+        </method>
+        <method name="cairo_user_scaled_font_get_foreground_marker" result="cairo_pattern_t *">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_user_scaled_font_get_foreground_source" result="cairo_pattern_t *">
+            <arg name="scaled_font" type="cairo_scaled_font_t *"/>
+        </method>
+        <method name="cairo_get_operator" result="cairo_operator_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_source" result="cairo_pattern_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_tolerance" result="double">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_antialias" result="cairo_antialias_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_has_current_point" result="cairo_bool_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_current_point" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="x" type="double *"/>
+            <arg name="y" type="double *"/>
+        </method>
+        <method name="cairo_get_fill_rule" result="cairo_fill_rule_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_line_width" result="double">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_hairline" result="cairo_bool_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_line_cap" result="cairo_line_cap_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_line_join" result="cairo_line_join_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_miter_limit" result="double">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_dash_count" result="int">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_dash" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="dashes" type="double *"/>
+            <arg name="offset" type="double *"/>
+        </method>
+        <method name="cairo_get_matrix" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_get_target" result="cairo_surface_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_get_group_target" result="cairo_surface_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_copy_path" result="cairo_path_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_copy_path_flat" result="cairo_path_t *">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_append_path" result="void">
+            <arg name="cr" type="cairo_t *"/>
+            <arg name="path" type="const cairo_path_t *"/>
+        </method>
+        <method name="cairo_path_destroy" result="void">
+            <arg name="path" type="cairo_path_t *"/>
+        </method>
+        <method name="cairo_status" result="cairo_status_t">
+            <arg name="cr" type="cairo_t *"/>
+        </method>
+        <method name="cairo_status_to_string" result="const char *">
+            <arg name="status" type="cairo_status_t"/>
+        </method>
+        <method name="cairo_device_reference" result="cairo_device_t *">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_get_type" result="cairo_device_type_t">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_status" result="cairo_status_t">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_acquire" result="cairo_status_t">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_release" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_flush" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_finish" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_destroy" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_get_reference_count" result="unsigned int">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_get_user_data" result="void *">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_device_set_user_data" result="cairo_status_t">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_surface_create_similar" result="cairo_surface_t *">
+            <arg name="other" type="cairo_surface_t *"/>
+            <arg name="content" type="cairo_content_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_surface_create_similar_image" result="cairo_surface_t *">
+            <arg name="other" type="cairo_surface_t *"/>
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_surface_map_to_image" result="cairo_surface_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="extents" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_surface_unmap_image" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="image" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_create_for_rectangle" result="cairo_surface_t *">
+            <arg name="target" type="cairo_surface_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+            <arg name="width" type="double"/>
+            <arg name="height" type="double"/>
+        </method>
+        <method name="cairo_surface_create_observer" result="cairo_surface_t *">
+            <arg name="target" type="cairo_surface_t *"/>
+            <arg name="mode" type="cairo_surface_observer_mode_t"/>
+        </method>
+        <method name="cairo_surface_observer_add_paint_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_mask_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_fill_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_stroke_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_glyphs_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_flush_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_add_finish_callback" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="func" type="cairo_surface_observer_callback_t"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_print" result="cairo_status_t">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_surface_observer_elapsed" result="double">
+            <arg name="abstract_surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_device_observer_print" result="cairo_status_t">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_device_observer_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_observer_paint_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_observer_mask_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_observer_fill_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_observer_stroke_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_device_observer_glyphs_elapsed" result="double">
+            <arg name="abstract_device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_surface_reference" result="cairo_surface_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_finish" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_destroy" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_get_device" result="cairo_device_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_get_reference_count" result="unsigned int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_status" result="cairo_status_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_get_type" result="cairo_surface_type_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_get_content" result="cairo_content_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_write_to_png" result="cairo_status_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="filename" type="const char *"/>
+        </method>
+        <method name="cairo_surface_write_to_png_stream" result="cairo_status_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_surface_get_user_data" result="void *">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_surface_set_user_data" result="cairo_status_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_surface_get_mime_data" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="mime_type" type="const char *"/>
+            <arg name="*data" type="const unsigned char *"/>
+            <arg name="length" type="unsigned long *"/>
+        </method>
+        <method name="cairo_surface_set_mime_data" result="cairo_status_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="mime_type" type="const char *"/>
+            <arg name="data" type="const unsigned char *"/>
+            <arg name="length" type="unsigned long"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_surface_supports_mime_type" result="cairo_bool_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="mime_type" type="const char *"/>
+        </method>
+        <method name="cairo_surface_get_font_options" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="options" type="cairo_font_options_t *"/>
+        </method>
+        <method name="cairo_surface_flush" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_mark_dirty" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_mark_dirty_rectangle" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x" type="int"/>
+            <arg name="y" type="int"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_surface_set_device_scale" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_scale" type="double"/>
+            <arg name="y_scale" type="double"/>
+        </method>
+        <method name="cairo_surface_get_device_scale" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_scale" type="double *"/>
+            <arg name="y_scale" type="double *"/>
+        </method>
+        <method name="cairo_surface_set_device_offset" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_offset" type="double"/>
+            <arg name="y_offset" type="double"/>
+        </method>
+        <method name="cairo_surface_get_device_offset" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_offset" type="double *"/>
+            <arg name="y_offset" type="double *"/>
+        </method>
+        <method name="cairo_surface_set_fallback_resolution" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_pixels_per_inch" type="double"/>
+            <arg name="y_pixels_per_inch" type="double"/>
+        </method>
+        <method name="cairo_surface_get_fallback_resolution" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x_pixels_per_inch" type="double *"/>
+            <arg name="y_pixels_per_inch" type="double *"/>
+        </method>
+        <method name="cairo_surface_copy_page" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_show_page" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_surface_has_show_text_glyphs" result="cairo_bool_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_create" result="cairo_surface_t *">
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_format_stride_for_width" result="int">
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+        </method>
+        <method name="cairo_image_surface_create_for_data" result="cairo_surface_t *">
+            <arg name="data" type="unsigned char *"/>
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+            <arg name="stride" type="int"/>
+        </method>
+        <method name="cairo_image_surface_get_data" result="unsigned char *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_get_format" result="cairo_format_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_get_width" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_get_height" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_get_stride" result="int">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_image_surface_create_from_png" result="cairo_surface_t *">
+            <arg name="filename" type="const char *"/>
+        </method>
+        <method name="cairo_image_surface_create_from_png_stream" result="cairo_surface_t *">
+            <arg name="read_func" type="cairo_read_func_t"/>
+            <arg name="closure" type="void *"/>
+        </method>
+        <method name="cairo_recording_surface_create" result="cairo_surface_t *">
+            <arg name="content" type="cairo_content_t"/>
+            <arg name="extents" type="const cairo_rectangle_t *"/>
+        </method>
+        <method name="cairo_recording_surface_ink_extents" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="x0" type="double *"/>
+            <arg name="y0" type="double *"/>
+            <arg name="width" type="double *"/>
+            <arg name="height" type="double *"/>
+        </method>
+        <method name="cairo_recording_surface_get_extents" result="cairo_bool_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="extents" type="cairo_rectangle_t *"/>
+        </method>
+        <method name="cairo_pattern_create_raster_source" result="cairo_pattern_t *">
+            <arg name="user_data" type="void *"/>
+            <arg name="content" type="cairo_content_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_raster_source_pattern_set_callback_data" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="data" type="void *"/>
+        </method>
+        <method name="cairo_raster_source_pattern_get_callback_data" result="void *">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_raster_source_pattern_set_acquire" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="acquire" type="cairo_raster_source_acquire_func_t"/>
+            <arg name="release" type="cairo_raster_source_release_func_t"/>
+        </method>
+        <method name="cairo_raster_source_pattern_get_acquire" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="acquire" type="cairo_raster_source_acquire_func_t *"/>
+            <arg name="release" type="cairo_raster_source_release_func_t *"/>
+        </method>
+        <method name="cairo_raster_source_pattern_set_snapshot" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="snapshot" type="cairo_raster_source_snapshot_func_t"/>
+        </method>
+        <method name="cairo_raster_source_pattern_get_snapshot" result="cairo_raster_source_snapshot_func_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_raster_source_pattern_set_copy" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="copy" type="cairo_raster_source_copy_func_t"/>
+        </method>
+        <method name="cairo_raster_source_pattern_get_copy" result="cairo_raster_source_copy_func_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_raster_source_pattern_set_finish" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="finish" type="cairo_raster_source_finish_func_t"/>
+        </method>
+        <method name="cairo_raster_source_pattern_get_finish" result="cairo_raster_source_finish_func_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_create_rgb" result="cairo_pattern_t *">
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+        </method>
+        <method name="cairo_pattern_create_rgba" result="cairo_pattern_t *">
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_pattern_create_for_surface" result="cairo_pattern_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_pattern_create_linear" result="cairo_pattern_t *">
+            <arg name="x0" type="double"/>
+            <arg name="y0" type="double"/>
+            <arg name="x1" type="double"/>
+            <arg name="y1" type="double"/>
+        </method>
+        <method name="cairo_pattern_create_radial" result="cairo_pattern_t *">
+            <arg name="cx0" type="double"/>
+            <arg name="cy0" type="double"/>
+            <arg name="radius0" type="double"/>
+            <arg name="cx1" type="double"/>
+            <arg name="cy1" type="double"/>
+            <arg name="radius1" type="double"/>
+        </method>
+        <method name="cairo_pattern_create_mesh" result="cairo_pattern_t *"/>
+        <method name="cairo_pattern_reference" result="cairo_pattern_t *">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_destroy" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_get_reference_count" result="unsigned int">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_status" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_get_user_data" result="void *">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+        </method>
+        <method name="cairo_pattern_set_user_data" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="key" type="const cairo_user_data_key_t *"/>
+            <arg name="user_data" type="void *"/>
+            <arg name="destroy" type="cairo_destroy_func_t"/>
+        </method>
+        <method name="cairo_pattern_get_type" result="cairo_pattern_type_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_add_color_stop_rgb" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="offset" type="double"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+        </method>
+        <method name="cairo_pattern_add_color_stop_rgba" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="offset" type="double"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_begin_patch" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_mesh_pattern_end_patch" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_mesh_pattern_curve_to" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="x1" type="double"/>
+            <arg name="y1" type="double"/>
+            <arg name="x2" type="double"/>
+            <arg name="y2" type="double"/>
+            <arg name="x3" type="double"/>
+            <arg name="y3" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_line_to" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_move_to" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_set_control_point" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="point_num" type="unsigned int"/>
+            <arg name="x" type="double"/>
+            <arg name="y" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_set_corner_color_rgb" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="corner_num" type="unsigned int"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+        </method>
+        <method name="cairo_mesh_pattern_set_corner_color_rgba" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="corner_num" type="unsigned int"/>
+            <arg name="red" type="double"/>
+            <arg name="green" type="double"/>
+            <arg name="blue" type="double"/>
+            <arg name="alpha" type="double"/>
+        </method>
+        <method name="cairo_pattern_set_matrix" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_pattern_get_matrix" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_pattern_set_extend" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="extend" type="cairo_extend_t"/>
+        </method>
+        <method name="cairo_pattern_get_extend" result="cairo_extend_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_set_filter" result="void">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="filter" type="cairo_filter_t"/>
+        </method>
+        <method name="cairo_pattern_get_filter" result="cairo_filter_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+        </method>
+        <method name="cairo_pattern_get_rgba" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="red" type="double *"/>
+            <arg name="green" type="double *"/>
+            <arg name="blue" type="double *"/>
+            <arg name="alpha" type="double *"/>
+        </method>
+        <method name="cairo_pattern_get_surface" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="*surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_pattern_get_color_stop_rgba" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="index" type="int"/>
+            <arg name="offset" type="double *"/>
+            <arg name="red" type="double *"/>
+            <arg name="green" type="double *"/>
+            <arg name="blue" type="double *"/>
+            <arg name="alpha" type="double *"/>
+        </method>
+        <method name="cairo_pattern_get_color_stop_count" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="count" type="int *"/>
+        </method>
+        <method name="cairo_pattern_get_linear_points" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="x0" type="double *"/>
+            <arg name="y0" type="double *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+        </method>
+        <method name="cairo_pattern_get_radial_circles" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="x0" type="double *"/>
+            <arg name="y0" type="double *"/>
+            <arg name="r0" type="double *"/>
+            <arg name="x1" type="double *"/>
+            <arg name="y1" type="double *"/>
+            <arg name="r1" type="double *"/>
+        </method>
+        <method name="cairo_mesh_pattern_get_patch_count" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="count" type="unsigned int *"/>
+        </method>
+        <method name="cairo_mesh_pattern_get_path" result="cairo_path_t *">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="patch_num" type="unsigned int"/>
+        </method>
+        <method name="cairo_mesh_pattern_get_corner_color_rgba" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="patch_num" type="unsigned int"/>
+            <arg name="corner_num" type="unsigned int"/>
+            <arg name="red" type="double *"/>
+            <arg name="green" type="double *"/>
+            <arg name="blue" type="double *"/>
+            <arg name="alpha" type="double *"/>
+        </method>
+        <method name="cairo_mesh_pattern_get_control_point" result="cairo_status_t">
+            <arg name="pattern" type="cairo_pattern_t *"/>
+            <arg name="patch_num" type="unsigned int"/>
+            <arg name="point_num" type="unsigned int"/>
+            <arg name="x" type="double *"/>
+            <arg name="y" type="double *"/>
+        </method>
+        <method name="cairo_matrix_init" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="xx" type="double"/>
+            <arg name="yx" type="double"/>
+            <arg name="xy" type="double"/>
+            <arg name="yy" type="double"/>
+            <arg name="x0" type="double"/>
+            <arg name="y0" type="double"/>
+        </method>
+        <method name="cairo_matrix_init_identity" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_matrix_init_translate" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="tx" type="double"/>
+            <arg name="ty" type="double"/>
+        </method>
+        <method name="cairo_matrix_init_scale" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="sx" type="double"/>
+            <arg name="sy" type="double"/>
+        </method>
+        <method name="cairo_matrix_init_rotate" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="radians" type="double"/>
+        </method>
+        <method name="cairo_matrix_translate" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="tx" type="double"/>
+            <arg name="ty" type="double"/>
+        </method>
+        <method name="cairo_matrix_scale" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="sx" type="double"/>
+            <arg name="sy" type="double"/>
+        </method>
+        <method name="cairo_matrix_rotate" result="void">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+            <arg name="radians" type="double"/>
+        </method>
+        <method name="cairo_matrix_invert" result="cairo_status_t">
+            <arg name="matrix" type="cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_matrix_multiply" result="void">
+            <arg name="result" type="cairo_matrix_t *"/>
+            <arg name="a" type="const cairo_matrix_t *"/>
+            <arg name="b" type="const cairo_matrix_t *"/>
+        </method>
+        <method name="cairo_matrix_transform_distance" result="void">
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+            <arg name="dx" type="double *"/>
+            <arg name="dy" type="double *"/>
+        </method>
+        <method name="cairo_matrix_transform_point" result="void">
+            <arg name="matrix" type="const cairo_matrix_t *"/>
+            <arg name="x" type="double *"/>
+            <arg name="y" type="double *"/>
+        </method>
+        <method name="cairo_region_create" result="cairo_region_t *"/>
+        <method name="cairo_region_create_rectangle" result="cairo_region_t *">
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_create_rectangles" result="cairo_region_t *">
+            <arg name="rects" type="const cairo_rectangle_int_t *"/>
+            <arg name="count" type="int"/>
+        </method>
+        <method name="cairo_region_copy" result="cairo_region_t *">
+            <arg name="original" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_reference" result="cairo_region_t *">
+            <arg name="region" type="cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_destroy" result="void">
+            <arg name="region" type="cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_equal" result="cairo_bool_t">
+            <arg name="a" type="const cairo_region_t *"/>
+            <arg name="b" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_status" result="cairo_status_t">
+            <arg name="region" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_get_extents" result="void">
+            <arg name="region" type="const cairo_region_t *"/>
+            <arg name="extents" type="cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_num_rectangles" result="int">
+            <arg name="region" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_get_rectangle" result="void">
+            <arg name="region" type="const cairo_region_t *"/>
+            <arg name="nth" type="int"/>
+            <arg name="rectangle" type="cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_is_empty" result="cairo_bool_t">
+            <arg name="region" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_contains_rectangle" result="cairo_region_overlap_t">
+            <arg name="region" type="const cairo_region_t *"/>
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_contains_point" result="cairo_bool_t">
+            <arg name="region" type="const cairo_region_t *"/>
+            <arg name="x" type="int"/>
+            <arg name="y" type="int"/>
+        </method>
+        <method name="cairo_region_translate" result="void">
+            <arg name="region" type="cairo_region_t *"/>
+            <arg name="dx" type="int"/>
+            <arg name="dy" type="int"/>
+        </method>
+        <method name="cairo_region_subtract" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="other" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_subtract_rectangle" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_intersect" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="other" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_intersect_rectangle" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_union" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="other" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_union_rectangle" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_region_xor" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="other" type="const cairo_region_t *"/>
+        </method>
+        <method name="cairo_region_xor_rectangle" result="cairo_status_t">
+            <arg name="dst" type="cairo_region_t *"/>
+            <arg name="rectangle" type="const cairo_rectangle_int_t *"/>
+        </method>
+        <method name="cairo_debug_reset_static_data" result="void"/>
+        <method name="cairo_quartz_image_surface_create" result="cairo_surface_t *">
+            <arg name="image_surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_quartz_image_surface_get_image" result="cairo_surface_t *">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_ps_surface_create" result="cairo_surface_t *">
+            <arg name="filename" type="const char *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_ps_surface_create_for_stream" result="cairo_surface_t *">
+            <arg name="write_func" type="cairo_write_func_t"/>
+            <arg name="closure" type="void *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_ps_surface_restrict_to_level" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="level" type="cairo_ps_level_t"/>
+        </method>
+        <method name="cairo_ps_get_levels" result="void">
+            <arg name="*levels" type="cairo_ps_level_t const *"/>
+            <arg name="num_levels" type="int *"/>
+        </method>
+        <method name="cairo_ps_level_to_string" result="const char *">
+            <arg name="level" type="cairo_ps_level_t"/>
+        </method>
+        <method name="cairo_ps_surface_set_eps" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="eps" type="cairo_bool_t"/>
+        </method>
+        <method name="cairo_ps_surface_get_eps" result="cairo_bool_t">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_ps_surface_set_size" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="width_in_points" type="double"/>
+            <arg name="height_in_points" type="double"/>
+        </method>
+        <method name="cairo_ps_surface_dsc_comment" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="comment" type="const char *"/>
+        </method>
+        <method name="cairo_ps_surface_dsc_begin_setup" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_ps_surface_dsc_begin_page_setup" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_quartz_surface_create" result="cairo_surface_t *">
+            <arg name="format" type="cairo_format_t"/>
+            <arg name="width" type="unsigned int"/>
+            <arg name="height" type="unsigned int"/>
+        </method>
+        <method name="cairo_quartz_surface_create_for_cg_context" result="cairo_surface_t *">
+            <arg name="cgContext" type="CGContextRef"/>
+            <arg name="width" type="unsigned int"/>
+            <arg name="height" type="unsigned int"/>
+        </method>
+        <method name="cairo_quartz_surface_get_cg_context" result="CGContextRef">
+            <arg name="surface" type="cairo_surface_t *"/>
+        </method>
+        <method name="cairo_quartz_font_face_create_for_cgfont" result="cairo_font_face_t *">
+            <arg name="font" type="CGFontRef"/>
+        </method>
+        <method name="cairo_quartz_font_face_create_for_atsu_font_id" result="cairo_font_face_t *">
+            <arg name="font_id" type="ATSUFontID"/>
+        </method>
+        <method name="cairo_xcb_surface_create" result="cairo_surface_t *">
+            <arg name="connection" type="xcb_connection_t *"/>
+            <arg name="drawable" type="xcb_drawable_t"/>
+            <arg name="visual" type="xcb_visualtype_t *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xcb_surface_create_for_bitmap" result="cairo_surface_t *">
+            <arg name="connection" type="xcb_connection_t *"/>
+            <arg name="screen" type="xcb_screen_t *"/>
+            <arg name="bitmap" type="xcb_pixmap_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xcb_surface_create_with_xrender_format" result="cairo_surface_t *">
+            <arg name="connection" type="xcb_connection_t *"/>
+            <arg name="screen" type="xcb_screen_t *"/>
+            <arg name="drawable" type="xcb_drawable_t"/>
+            <arg name="format" type="xcb_render_pictforminfo_t *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xcb_surface_set_size" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xcb_surface_set_drawable" result="void">
+            <arg name="surface" type="cairo_surface_t *"/>
+            <arg name="drawable" type="xcb_drawable_t"/>
+            <arg name="width" type="int"/>
+            <arg name="height" type="int"/>
+        </method>
+        <method name="cairo_xcb_device_get_connection" result="xcb_connection_t *">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_xcb_device_debug_cap_xshm_version" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="major_version" type="int"/>
+            <arg name="minor_version" type="int"/>
+        </method>
+        <method name="cairo_xcb_device_debug_cap_xrender_version" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="major_version" type="int"/>
+            <arg name="minor_version" type="int"/>
+        </method>
+        <method name="cairo_xcb_device_debug_set_precision" result="void">
+            <arg name="device" type="cairo_device_t *"/>
+            <arg name="precision" type="int"/>
+        </method>
+        <method name="cairo_xcb_device_debug_get_precision" result="int">
+            <arg name="device" type="cairo_device_t *"/>
+        </method>
+        <method name="cairo_win32_get_system_text_quality" result="BYTE"/>
+    </interface>
+</library>
